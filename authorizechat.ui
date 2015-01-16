@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AuthorizeChat</class>
+ <widget class="QWidget" name="AuthorizeChat">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>443</width>
+    <height>547</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Sign into TouHou.FM</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QWebView" name="webView">
+     <property name="url">
+      <url>
+       <string>http://touhou.fm/wp-login.php?redirect_to=http%3A%2F%2Ftouhou.fm%2Fauthtoken.php&amp;reauth=1</string>
+      </url>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QProgressBar" name="progressBar">
+     <property name="value">
+      <number>24</number>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QWebView</class>
+   <extends>QWidget</extends>
+   <header>QtWebKitWidgets/QWebView</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>webView</sender>
+   <signal>loadProgress(int)</signal>
+   <receiver>progressBar</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>196</x>
+     <y>182</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>170</x>
+     <y>517</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>webView</sender>
+   <signal>urlChanged(QUrl)</signal>
+   <receiver>AuthorizeChat</receiver>
+   <slot>trackUrl(QUrl)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>223</x>
+     <y>95</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>217</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>webView</sender>
+   <signal>loadFinished(bool)</signal>
+   <receiver>AuthorizeChat</receiver>
+   <slot>loadFinished()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>300</x>
+     <y>100</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>398</x>
+     <y>158</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>trackUrl(QUrl)</slot>
+  <slot>loadFinished()</slot>
+ </slots>
+</ui>
